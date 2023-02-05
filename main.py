@@ -10,6 +10,7 @@ screen.title("Frogger")
 screen.tracer(0)
 
 frog = Player()
+car_manager = CarManager()
 
 screen.listen()
 screen.onkeypress(frog.cross_street, "Up")
@@ -19,6 +20,9 @@ while game_is_on:
     #tracer is off, instead game (everything in loop) will be refreshed every .1s
     time.sleep(0.1)
     screen.update()
+
+    car_manager.create_car()
+    car_manager.move_cars()
 
 screen.exitonclick()
 
