@@ -24,5 +24,11 @@ while game_is_on:
     car_manager.create_car()
     car_manager.move_cars()
 
+    #detect when a frog collides with a car
+    for car in car_manager.all_cars:
+        if frog.distance(car) < 20:
+            game_is_on = False
+            print("Game Over")
+
 screen.exitonclick()
 
