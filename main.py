@@ -3,6 +3,7 @@ import time
 from player import Player
 from car_manager import CarManager
 from scoreboard import Scoreboard
+from scoreboard import Scoreboard
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -11,6 +12,7 @@ screen.tracer(0)
 
 frog = Player()
 car_manager = CarManager()
+scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkeypress(frog.cross_street, "Up")
@@ -28,7 +30,13 @@ while game_is_on:
     for car in car_manager.all_cars:
         if frog.distance(car) < 20:
             game_is_on = False
-            print("Game Over")
+            scoreboard.game_over()
+
+    #detect frog successfully crosses
+    if frog.is_at_finish_line() == True:
+        scoreboard.increase_score()
+        frog.go_to_start()
+        car_manager.level_up()
 
 screen.exitonclick()
 

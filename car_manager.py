@@ -9,6 +9,7 @@ class CarManager:
 
     def __init__(self):
         self.all_cars = []
+        self.car_speed = STARTING_MOVE_DISTANCE
 
     def create_car(self):
         #only create a car when 1 else too  many cars are created and unplayable
@@ -25,3 +26,6 @@ class CarManager:
     def move_cars(self):
         for car in self.all_cars:
             car.backward(STARTING_MOVE_DISTANCE)
+
+    def level_up(self):
+        self.car_speed += MOVE_INCREMENT
